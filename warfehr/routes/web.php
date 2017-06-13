@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+  return view('home');
 })->name('home');
 Route::get('/projects', function () {
-    return view('projects');
+  return view('projects');
 })->name('projects');
