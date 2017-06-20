@@ -39,7 +39,21 @@
         <a href="{{route('home')}}"><img src="/images/lisafehr-logo.png" width="239" height="95" alt="Lisa Fehr" id="logo" /></a>
         <div id="tagline" class="button">Web Developer</div>
         <section>
-          @yield('content')
+          <h1>@yield('header')</h1>
+        
+          @if (count($errors) > 0)
+            <div class="alert alert-error">
+              <strong>Please correct these errors:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+          <article>
+            @yield('content')
+          </article>
         </section>
         <footer>
           <a class="alignleft button" rel="nofollow" href="http://validator.w3.org/check?uri={{urlencode("http://warfehr.com".$_SERVER['REQUEST_URI'])}}">

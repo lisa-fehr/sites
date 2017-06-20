@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-  return view('home');
-})->name('home');
-Route::get('/projects', function () {
-  return view('projects');
-})->name('projects');
+Route::group(['middleware' => ['web']], function () {
+  Route::get('/', function () {
+    return view('home');
+  })->name('home');
+  Route::get('/projects', function () {
+    return view('projects');
+  })->name('projects');
+});

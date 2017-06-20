@@ -1,0 +1,13 @@
+{
+    "name": "warfehr/omega_oled_msg",
+    "description": "Create and save a pixel message, and read the results to an Onion Omega OLED.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Lisa Fehr",
+            "email": "lisa@warfehr.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
