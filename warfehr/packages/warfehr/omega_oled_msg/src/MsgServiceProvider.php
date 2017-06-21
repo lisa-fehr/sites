@@ -4,8 +4,9 @@ namespace Warfehr\OmegaOledMsg;
 
 use Illuminate\Support\ServiceProvider;
 use Form;
+use Event;
 
-class OmegaMsgServiceProvider extends ServiceProvider
+class MsgServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -14,12 +15,12 @@ class OmegaMsgServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'omega_oled_msg');
+        $this->loadViewsFrom(__DIR__.'/views', 'oled_msg');
         
         // include this macro into your layout
-        Form::macro('warfehr_omega_form', function () { 
+        Form::macro('warfehr_oled_form', function () { 
             return view(
-                'omega_oled_msg::form',
+                'oled_msg::form',
                 [
                     'rows' => config('config.rows'),
                     'columns' => config('config.columns')
@@ -40,7 +41,9 @@ class OmegaMsgServiceProvider extends ServiceProvider
         );
         include __DIR__ . '/routes.php';
         $this->loadMigrationsFrom(__DIR__.'/migrations');
-        
-        $this->app->make('Warfehr\OmegaOledMsg\OmegaOledMsgController');
+
+        Event::listen('WarfehrMsg.creating', 'Warfehr\OmegaOledMsg\Events\MsgHandler@creating');
+
+        $this->app->make('Warfehr\OmegaOledMsg\MsgController');
     }
 }

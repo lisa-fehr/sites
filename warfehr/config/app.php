@@ -169,7 +169,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         // custom
-        Warfehr\OmegaOledMsg\OmegaMsgServiceProvider::class,
+        Warfehr\OmegaOledMsg\MsgServiceProvider::class,
 
         /*
          * Application Service Providers...

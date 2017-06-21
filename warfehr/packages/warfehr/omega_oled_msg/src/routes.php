@@ -1,4 +1,4 @@
 <?php
 Route::group(['middleware' => ['web']], function () {
-  Route::post('omega-oled', 'Warfehr\OmegaOledMsg\OmegaOledMsgController@store');
+  Route::post('oled-msg', 'Warfehr\OmegaOledMsg\MsgController@store');
 });

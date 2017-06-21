@@ -2,5 +2,5 @@
 @section('title', 'Warfehr - Projects')
 @section('header', 'Projects')
 @section('content')
-{!!Form::warfehr_omega_form()!!}
+{!!Form::warfehr_oled_form()!!}
 @endsection
