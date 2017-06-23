@@ -17,8 +17,8 @@ class MsgController extends Controller
   public function store(Request $request)
   {
     $validator = Validator::make($request->all(), [
-        'author' => 'required|max:255',
-        'block' => 'required',
+        'author' => 'required|max:255|alpha_dash',
+        'block' => 'required|array',
     ]);
     if ($validator->fails()) {
         return redirect()
@@ -27,7 +27,9 @@ class MsgController extends Controller
           ->withInput();
     }
 
-    Event::fire('WarfehrMsg.creating', [$request]);
+    $data = Event::fire('WarfehrMsg', [$request]);
+    $social_data = Event::fire('WarfehrImg', $data);
+    Event::fire('WarfehrSocial', $social_data);
 
     return redirect()
       ->back()

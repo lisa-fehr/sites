@@ -2,18 +2,18 @@
 
 namespace Warfehr\OmegaOledMsg\Events;
 
-use Warfehr\OmegaOledMsg\OmegaOledMsg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MsgHandler 
 {
+  private $msg_array = [];
   /**
    * Store the new msg
    * 
    * @param Request $request
    */
-  public function creating(Request $request)
+  public function handle(Request $request)
   {
     DB::transaction(function () use($request) {
       $rows = config('config.rows');
@@ -29,14 +29,17 @@ class MsgHandler
         ->sortBy(function ($p, $key) {
           return $key;
         })
-        ->implode(',')
+        ->implode('')
       ;
-
-      DB::table('oled_msg')->insert([
+      $this->msg_array = [
         'columns' => $columns,
         'author' => $request->input('author', ''),
         'content' => $picture
-      ]);
+      ];
+
+      DB::table('oled_msg')->insert($this->msg_array);
+
     });
+    return $this->msg_array;
   }
 }

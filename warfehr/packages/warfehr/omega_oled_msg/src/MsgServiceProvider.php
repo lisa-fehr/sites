@@ -42,7 +42,9 @@ class MsgServiceProvider extends ServiceProvider
         include __DIR__ . '/routes.php';
         $this->loadMigrationsFrom(__DIR__.'/migrations');
 
-        Event::listen('WarfehrMsg.creating', 'Warfehr\OmegaOledMsg\Events\MsgHandler@creating');
+        Event::listen('WarfehrMsg', 'Warfehr\OmegaOledMsg\Events\MsgHandler@handle');
+        Event::listen('WarfehrImg', 'Warfehr\OmegaOledMsg\Events\ImgHandler@handle');
+        Event::listen('WarfehrSocial', 'Warfehr\OmegaOledMsg\Events\SocialHandler@handle');
 
         $this->app->make('Warfehr\OmegaOledMsg\MsgController');
     }
