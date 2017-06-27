@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <title>@yield('title')</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
     <link rel='stylesheet' media='only screen and (max-width: 650px)' href='/css/style-small.css' />
-    <link rel="shortcut icon" type="image/gif" href="/images/favicon.gif">
+    <link rel="shortcut icon" type="image/gif" href="/images/favicon.gif" />
     <link rel="apple-touch-icon" href="/images/iPhone-icon.png" />
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
