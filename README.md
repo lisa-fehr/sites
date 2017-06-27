@@ -7,7 +7,7 @@ Tests:
 
 vendor/bin/phpunit packages/warfehr/omega_oled_msg/tests/Feature/FeatureTest.php 
 
-Goals:
+Pending Goals:
 - set up a queue for the image and twitter handlers
 - require thujohn/twitter in warfehr package vs main laravel project
 - move Validation to its own file
