@@ -3,7 +3,7 @@
 namespace Warfehr\OmegaOledMsg\Events;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Warfehr\OmegaOledMsg\MsgModel;
 
 class MsgHandler 
 {
@@ -31,13 +31,14 @@ class MsgHandler
         })
         ->implode('')
       ;
+      
       $this->msg_array = [
         'columns' => $columns,
         'author' => $request->input('author', ''),
         'content' => $picture
       ];
 
-      DB::table('oled_msg')->insert($this->msg_array);
+      MsgModel::create($this->msg_array);
 
     });
     return $this->msg_array;

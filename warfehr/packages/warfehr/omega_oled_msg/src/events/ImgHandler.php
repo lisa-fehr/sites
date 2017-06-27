@@ -52,7 +52,7 @@ class ImgHandler
       $this->x++;
 
       // reset the x axis when it hits the max and move to the next row of pixels
-      if($this->x % $width == 0) {
+      if($this->x == $width) {
         $this->x = 0;
         $this->y++;
       }

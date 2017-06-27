@@ -23,7 +23,8 @@ class MsgServiceProvider extends ServiceProvider
                 'oled_msg::form',
                 [
                     'rows' => config('config.rows'),
-                    'columns' => config('config.columns')
+                    'columns' => config('config.columns'),
+                    'twitter_handle' => config('config.twitter-handle'),
                 ]
             );
         });

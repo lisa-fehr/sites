@@ -10,8 +10,17 @@ body {
   color: #ababab;
   font: 90% Verdana, Geneva, sans-serif;
 }
-img {border:none;}
-h1,h2,h3,h4 {font-family: "Times New Roman", Times, serif;}
+img {border: none;}
+h1 {
+  font-size: 150%;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+h2 {
+  font-size: 110%;
+  color: #508e9a;
+}
 
 p {
   margin: 13px 0;
@@ -131,10 +140,34 @@ nav a:hover, nav a.active {
 
 /*** content ***/
 section {
-  margin: 2% 5% 0 5%;
+  margin: 0 2% 5% 2%;
   background: #2b2c2c;
   min-height: 500px;
 }
+.box {
+  background: #262626;
+  width: 30%;
+  padding: 2%;
+  float: left;
+  margin: 0 3% 2% 0;
+  position: relative;
+}
+.profile {
+  border: 1px solid #000;
+  background: #2b2c2c;
+  padding: 6%;
+}
+.intro {
+  float:left;
+  width: 62%;
+}
+.intro ul {
+  list-style-type: circle;
+}
+.intro li {
+  margin: 2% 0 3% 4%;
+}
+
 
 /**** forms ****/
 input[type=checkbox] {
@@ -204,6 +237,18 @@ input {
   height: 16px;
   margin: 0 5px 0 0;
 }
+#github-icon {
+  background-position: -95px -2px;
+  width: 55px;
+  height: 23px;
+  margin: 0 5px 0 0;
+}
+#twitter-icon {
+  background-position: -155px -2px;
+  width: 26px;
+  height: 23px;
+  margin: 0 5px 0 0;
+}
 .icon {
   background: url('/images/sprites.png') no-repeat top left;
   float: left;
@@ -217,6 +262,7 @@ footer {
   border-top: 1px dashed #ccc;
   min-height: 100px;
   padding: 20px 17px;
+  clear: both;
 }
 #copyright {
   position: absolute;
