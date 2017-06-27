@@ -3,6 +3,7 @@
 namespace Warfehr\OmegaOledMsg\Events;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Warfehr\OmegaOledMsg\MsgModel;
 
 class MsgHandler 
