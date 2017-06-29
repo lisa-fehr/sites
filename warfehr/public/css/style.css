@@ -249,6 +249,18 @@ input {
   height: 23px;
   margin: 0 5px 0 0;
 }
+#linkedin-icon {
+  background-position: -180px 0;
+  width: 28px;
+  height: 22px;
+  margin: 1px 3px 0 0;
+}
+#pdf-icon {
+  background-position: -210px -4px;
+  width: 35px;
+  height: 22px;
+  margin: 1px 3px 0 0;
+}
 .icon {
   background: url('/images/sprites.png') no-repeat top left;
   float: left;
