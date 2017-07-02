@@ -3,7 +3,6 @@
 namespace Warfehr\OmegaOledMsg\Events;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Warfehr\OmegaOledMsg\Exceptions\MsgException;
 use Warfehr\OmegaOledMsg\MsgModel;
 
@@ -18,8 +17,6 @@ class MsgHandler
   public function handle(Request $request)
   {
 
-    DB::transaction(function () use($request) {
-
       $pixel_string = $this->collectBlocksAsString($request->input('block', []));
       
       $message_array = [
@@ -33,12 +30,11 @@ class MsgHandler
       if($message->validate($message_array)) {
 
         $message::create($message_array);
+        
         return $message_array;
       }
 
       throw new MsgException($message->errors());
-      
-    });
   }
 
   /**
