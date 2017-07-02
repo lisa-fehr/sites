@@ -3,9 +3,9 @@
 namespace Warfehr\OmegaOledMsg;
 
 use Event;
-use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Warfehr\OmegaOledMsg\Exceptions\MsgException;
 
 class MsgController extends Controller
 {
@@ -30,20 +30,20 @@ class MsgController extends Controller
    */
   public function store(Request $request)
   {
-    $validator = Validator::make($request->all(), [
-        'author' => 'required|max:255|regex:/(^[A-Za-z0-9 \'",-_@#]+$)+/',
-        'block' => 'required|array',
-      ],
-      ['regex' => 'The :attribute field may only contain alphanumeric characters, quotes, commas, dashes and underscores, @ and #.']
-    );
-    if ($validator->fails()) {
-        return redirect()
+    try {
+
+      $data = Event::fire('WarfehrMsg', [$request]);
+    }
+    catch (MsgException $e) {
+
+      return redirect()
           ->back()
-          ->withErrors($validator)
+          ->withErrors(
+            json_decode($e->getMessage())
+          )
           ->withInput();
     }
-
-    $data = Event::fire('WarfehrMsg', [$request]);
+    
     $social_data = Event::fire('WarfehrImg', $data);
     Event::fire('WarfehrSocial', $social_data);
 

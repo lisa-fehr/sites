@@ -31,7 +31,7 @@ class FeatureTest extends TestCase
     {
         $response = $this->post('/oled-msg');
 
-        $response->assertSessionHasErrors(['author', 'block']);
+        $response->assertSessionHasErrors(['author', 'content']);
     }
 
     public function testSuccess()
