@@ -43,6 +43,17 @@ class MsgServiceProvider extends ServiceProvider
         include __DIR__ . '/routes.php';
         $this->loadMigrationsFrom(__DIR__.'/migrations');
 
+        /*
+         * Register the service provider for the dependency.
+         */
+        $this->app->register('Thujohn\Twitter\TwitterServiceProvider');
+        /*
+         * Create aliases for the dependency.
+         */
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('Twitter', 'Thujohn\Twitter\Facades\Twitter');
+
+
         Event::listen('WarfehrMsg', 'Warfehr\OmegaOledMsg\Events\MsgHandler@handle');
         Event::listen('WarfehrImg', 'Warfehr\OmegaOledMsg\Events\ImgHandler@handle');
         Event::listen('WarfehrSocial', 'Warfehr\OmegaOledMsg\Events\SocialHandler@handle');
