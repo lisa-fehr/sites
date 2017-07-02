@@ -2,7 +2,7 @@ My resume site. Features a package that will allow you to create a pixel image t
 
 *Notes:*
 
-Package needs thujohn/twitter:
+Package uses thujohn/twitter:
 https://github.com/thujohn/twitter
 
 Use this macro in a custom layout:
@@ -18,11 +18,9 @@ vendor/bin/phpunit packages/warfehr/omega_oled_msg/tests/Feature/FeatureTest.php
 
 *Pending Goals:*
 - set up a queue for the image and twitter handlers
-- require thujohn/twitter in warfehr package vs main laravel project
-- move Validation to its own file
 - try vendor:publish for the package config file
 - set up HTML::link or similar
 - store images somewhere else
-- error handling on event handlers
+- error handling on event handlers (1 done, 2 left)
 - bigger oled screen
 - make a published package
