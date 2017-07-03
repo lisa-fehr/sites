@@ -31,6 +31,7 @@
   <ul>
     <li>Optimization and refactoring of a large legacy application</li>
     <li>Source control and Test Framework experience</li>
+    <li>Performed and received code reviews</li>
     <li>Aware of PSR coding standards - will follow team preferences</li>
     <li>Strive to meet deadlines and flag ahead of time if they cannot be met</li>
     <li>Accustomed to frequent releases of large features, and overlapping tasks with other teammates</li>
