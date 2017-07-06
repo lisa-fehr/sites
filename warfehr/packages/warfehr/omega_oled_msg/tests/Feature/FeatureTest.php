@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Event;
 
 class FeatureTest extends TestCase
 {
+    use DatabaseTransactions;
+
     private $rows;
     private $columns;
     private $total;
@@ -41,14 +43,11 @@ class FeatureTest extends TestCase
 
         $this->before();
 
-        DB::beginTransaction();
         $response = $this->post('/oled-msg', [
             'author' => 'warfehr test author',
             'block' => array_fill(0, $this->total, 1)
         ]);
         $response->assertSessionHas('warfehr_status', 'Message queued.');
-        
-        DB::rollBack();
     }
 
     public function testEventsFired()
@@ -57,13 +56,10 @@ class FeatureTest extends TestCase
 
         $this->before();
         
-        DB::beginTransaction();
         $response = $this->post('/oled-msg', [
             'author' => 'warfehr test author',
             'block' => array_fill(0, $this->total, 1)
         ]);
-
-        DB::rollBack();
 
         Event::assertDispatched('WarfehrMsg');
         Event::assertDispatched('WarfehrImg');
@@ -74,13 +70,10 @@ class FeatureTest extends TestCase
     {
         $this->before();
         
-        DB::beginTransaction();
         $response = $this->post('/oled-msg', [
             'author' => 'warfehr test author in database',
             'block' => array_fill(0, $this->total, 1)
         ]);
         $this->assertDatabaseHas('oled_msg', ['author' => 'warfehr test author in database']);
-
-        DB::rollBack();
     }
 }
