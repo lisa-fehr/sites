@@ -25,16 +25,15 @@ class MsgHandler
         'content' => $pixel_string
       ];
 
-      $message = new MsgModel();
+      $message = new MsgModel($message_array);
+      $message->save();
 
-      if($message->validate($message_array)) {
+      if($message->hasErrors()) {
 
-        $message::create($message_array);
-        
-        return $message_array;
+        throw new MsgException($message->errors());
       }
 
-      throw new MsgException($message->errors());
+      return $message_array;
   }
 
   /**

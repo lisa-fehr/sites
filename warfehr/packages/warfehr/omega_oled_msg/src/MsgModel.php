@@ -7,6 +7,7 @@ use Validator;
 
 class MsgModel extends Model
 {
+
     /**
      * The table associated with the model.
      *
@@ -69,14 +70,21 @@ class MsgModel extends Model
     }
 
     /**
-     * Check that the data for the model is valid before saving.
-     * @param  array $data Request input
-     * @return bool
+     * Add onto the existing save method to force validation before save.
+     * @param  array $options
+     * @return boolean
      */
-    public function validate(array $data)
+    public function save(array $options = array())
     {
         // make a new validator object
-        $validator = Validator::make($data, $this->rules(), $this->messages(), $this->attributes());
+        $validator = Validator::make([
+                'content' => $this->content,
+                'author' => $this->author,
+            ],
+            $this->rules(),
+            $this->messages(),
+            $this->attributes()
+        );
 
         // check for failure
         if ($validator->fails())
@@ -85,6 +93,8 @@ class MsgModel extends Model
             $this->errors = $validator->messages();
             return false;
         }
+
+        parent::save();
 
         // validation pass
         return true;
@@ -97,6 +107,15 @@ class MsgModel extends Model
     public function errors()
     {
         return $this->errors;
+    }
+
+    /**
+     * Indicate that something went wrong
+     * @return boolean
+     */
+    public function hasErrors()
+    {
+        return !empty($this->errors);
     }
 
 
