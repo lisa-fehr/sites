@@ -2,25 +2,26 @@ My resume site. Features a package that will allow you to create a pixel image t
 
 *Notes:*
 
-Package uses thujohn/twitter:
+Package uses thujohn/twitter. Use the instructions here to set it up:
 https://github.com/thujohn/twitter
 
-Use this macro in a custom layout:
+Modify the config file in packages/warfehr/omega_oled_msg with your oled size and twitter handle.
+
+Use this macro in a custom layout if you use the package separately:
 ```php
 {!! Form::warfehr_oled_form() !!}
 ```
-Package needs an /image folder in public to store images.
+Package needs an /image folder in public to store images generated with the oled form.
 
 *Tests:*
 ```
-vendor/bin/phpunit packages/warfehr/omega_oled_msg/tests/Feature/FeatureTest.php 
+vendor/bin/phpunit packages/warfehr/omega_oled_msg/tests 
 ```
 
 *Pending Goals:*
-- set up a queue for the image and twitter handlers
+- set up a queue for the image and twitter handlers (currently in branch: queue_code)
 - try vendor:publish for the package config file
 - set up HTML::link or similar
 - store images somewhere else
-- error handling on event handlers (1 done, 2 left)
 - bigger oled screen
 - make a published package
