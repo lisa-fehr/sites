@@ -40,7 +40,7 @@ class MsgServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/config.php', 'config'
         );
-        include __DIR__ . '/routes.php';
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/migrations');
 
         /*
@@ -53,10 +53,7 @@ class MsgServiceProvider extends ServiceProvider
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
         $loader->alias('Twitter', 'Thujohn\Twitter\Facades\Twitter');
 
-
         Event::listen('WarfehrMsg', 'Warfehr\OmegaOledMsg\Events\MsgHandler@handle');
-        Event::listen('WarfehrImg', 'Warfehr\OmegaOledMsg\Events\ImgHandler@handle');
-        Event::listen('WarfehrSocial', 'Warfehr\OmegaOledMsg\Events\SocialHandler@handle');
 
         $this->app->make('Warfehr\OmegaOledMsg\MsgController');
     }

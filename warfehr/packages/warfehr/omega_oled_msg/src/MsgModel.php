@@ -70,6 +70,14 @@ class MsgModel extends Model
     }
 
     /**
+     * Where the image for this message is stored
+     * @return string
+     */
+    public function getImgPathAttribute() {
+        return public_path('images/msg' . $this->id . '.png');
+    }
+
+    /**
      * Add onto the existing save method to force validation before save.
      * @param  array $options
      * @return boolean
@@ -94,7 +102,7 @@ class MsgModel extends Model
             return false;
         }
 
-        parent::save();
+        parent::save($options);
 
         // validation pass
         return true;
