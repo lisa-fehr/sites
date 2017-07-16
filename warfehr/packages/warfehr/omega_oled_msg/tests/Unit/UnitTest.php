@@ -38,8 +38,6 @@ class UnitTest extends TestCase
 
     /**
      * Test the accessor
-     *
-     * @return void
      */
     public function testImgPath()
     {

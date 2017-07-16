@@ -77,7 +77,7 @@ class FeatureTest extends TestCase
 
     public function testQueued()
     {
-        $this->msg_array['author'] = 'warfehr queue test author in queue';
+        $this->msg_array['author'] = 'warfehr test author in queue';
 
         $response = $this->post('/oled-msg', $this->msg_array);
 
