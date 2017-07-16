@@ -13,13 +13,15 @@ class CreateOledMsgTable extends Migration
      */
     public function up()
     {
-        Schema::create('oled_msg', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('author');
-            $table->longText('content');
-            $table->integer('columns');
-            $table->timestamps();
-        });
+        if (! Schema::hasTable('oled_msg')) {
+            Schema::create('oled_msg', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('author');
+                $table->longText('content');
+                $table->integer('columns');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -29,6 +31,8 @@ class CreateOledMsgTable extends Migration
      */
     public function down()
     {
-        Schema::drop('oled_msg');
+        if (Schema::hasTable('oled_msg')) {
+            Schema::drop('oled_msg');
+        }
     }
 }
