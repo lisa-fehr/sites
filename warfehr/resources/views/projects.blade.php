@@ -3,6 +3,9 @@
 @section('header', 'Projects')
 @section('content')
 <p>
+  <a href="https://twitter.com/warfehr/status/886775729052160000">Video demo</a> - created picture shows up on oled screen
+</p>
+<p>
   <a href="https://github.com/lisa-fehr/onion-microcontroller">Node script for Onion Omega2 Plus</a> - 
   shows the last image on my oled screen
 </p>
