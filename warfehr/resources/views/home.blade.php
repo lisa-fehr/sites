@@ -5,8 +5,8 @@
 <div class="box">
   <div class="profile vcard">
     <h1 class="fn">Lisa Fehr</h1>
-    <p><a href="/LisaFehr-resume.pdf"><span id="pdf-icon" class="icon"></span>Resume</a></p>
-    <p><a href="mailto:lisa@warfehr.com" class="email">lisa@warfehr.com</a></p>
+    <p><a href="/LisaFehr-resume.pdf"><i class="fa fa-file-pdf-o"></i>Resume</a></p>
+    <p><a href="mailto:lisa@warfehr.com" class="email"><i class="fa fa-envelope-o"></i>lisa@warfehr.com</a></p>
 
     <p class="adr"><span class="locality">Kitchener</span>, <span class="region">ON</span></p>
     <br />
@@ -15,11 +15,11 @@
     <br />
     <h2>Network:</h2>
     <p>
-      <a href="https://twitter.com/lisa_warfehr" class="url"><span id="twitter-icon" class="icon"></span>lisa_warfehr</a>
+      <a href="https://twitter.com/lisa_warfehr" class="url"><i class="fa fa-twitter"></i>lisa_warfehr</a>
       <br class="clear" />
-      <a href="https://github.com/lisa-fehr" class="url"><span id="github-icon" class="icon"></span>lisa-fehr</a>
+      <a href="https://github.com/lisa-fehr" class="url"><i class="fa fa-github"></i>lisa-fehr</a>
       <br class="clear" />
-      <a href="https://www.linkedin.com/in/lisafehr/" class="url"><span id="linkedin-icon" class="icon"></span>lisafehr</a>
+      <a href="https://www.linkedin.com/in/lisafehr/" class="url"><i class="fa fa-linkedin-square"></i>lisafehr</a>
     </p>
   </div>
 </div>

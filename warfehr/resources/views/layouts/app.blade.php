@@ -5,9 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
-    <link rel='stylesheet' media='only screen and (max-width: 650px)' href='/css/style-small.css' />
+    <link rel='stylesheet' media='only screen and (max-width: 775px)' href='/css/style-small.css' />
     <link rel="shortcut icon" type="image/gif" href="/images/favicon.gif" />
     <link rel="apple-touch-icon" href="/images/iPhone-icon.png" />
+    <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -21,7 +22,7 @@
             class="active"
           @endif
           >
-            <div id="dev-icon" class="icon">&nbsp;</div>Projects
+            <i class="fa fa-file-text"></i>Projects
           </a>
         </li>
         <li>
@@ -30,7 +31,7 @@
             class="active"
           @endif
           >
-            <div id="house-icon" class="icon">&nbsp;</div>Home
+            <i class="fa fa-home"></i>Home
           </a>
         </li>
       </ul>
@@ -59,7 +60,7 @@
         </section>
         <footer>
           <a class="alignleft button" rel="nofollow" href="http://validator.w3.org/check?uri={{urlencode("http://warfehr.com".$_SERVER['REQUEST_URI'])}}">
-            <div id="check-icon" class="icon">&nbsp;</div>W3C valid
+            <i class="fa fa-check-square-o"></i>W3C valid
           </a>
           <a href="#top" class="alignright button">Back to top</a>
           <div id="copyright">&copy; {{date("Y")}} Lisa Fehr</div>
