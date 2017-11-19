@@ -1,5 +1,11 @@
 My resume site. Features a package that will allow you to create a pixel image then send it to twitter and my microcontroller oled screen. It is my first attempt at a package in Laravel 5.4.
 
+May need to run:
+- cp .env.example .env 
+- php artisan key:generate
+- php artisan config:clear
+
+
 *Notes:*
 
 Package uses thujohn/twitter. Use the instructions here to set it up:
