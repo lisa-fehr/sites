@@ -3,32 +3,52 @@
 namespace Warfehr\OmegaOledMsg\Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
+use Thujohn\Twitter\Facades\Twitter;
+use Warfehr\OmegaOledMsg\MsgModel;
+use Warfehr\OmegaOledMsg\Jobs\ProcessImg;
+use Warfehr\OmegaOledMsg\Jobs\ProcessSocial;
 
 class FeatureTest extends TestCase
 {
     use DatabaseTransactions;
 
-    private $rows;
-    private $columns;
-    private $total;
-
-    private function before() 
-    {
-        $this->rows = config('config.rows');
-        $this->columns = config('config.columns');
-
-        $this->total = $this->rows * $this->columns;
-    }
     /**
-     * Test failure and success
-     *
-     * @return void
+     * Total digits in the message
+     * @var integer
      */
+    private $total = 32;
+
+    /**
+     * Columns for each row of digits
+     * @var integer
+     */
+    private $columns = 16;
+
+    /**
+     * Message array
+     * @var array
+     */
+    private $msg_array = [];
+
+    /**
+     * Default preparation for each test
+     */
+    public function setUp()
+    {
+        parent::setUp(); 
+        Queue::fake();
+
+        // shared on most tests
+        $this->msg_array = [
+            'block' => array_fill(0, $this->total, 1),
+            'columns' => $this->columns
+        ];
+    }
+
     public function testFailure()
     {
         $response = $this->post('/oled-msg');
@@ -36,17 +56,11 @@ class FeatureTest extends TestCase
         $response->assertSessionHasErrors(['author', 'content']);
     }
 
-    public function testSuccess()
+    public function testSuccessMessage()
     {
-        // don't need to run the events here
-        $this->withoutEvents();
+        $this->msg_array['author'] = 'warfehr test author success';
 
-        $this->before();
-
-        $response = $this->post('/oled-msg', [
-            'author' => 'warfehr test author',
-            'block' => array_fill(0, $this->total, 1)
-        ]);
+        $response = $this->post('/oled-msg', $this->msg_array);
         $response->assertSessionHas('warfehr_status', 'Message queued.');
     }
 
@@ -54,26 +68,67 @@ class FeatureTest extends TestCase
     {
         Event::fake();
 
-        $this->before();
-        
-        $response = $this->post('/oled-msg', [
-            'author' => 'warfehr test author',
-            'block' => array_fill(0, $this->total, 1)
-        ]);
+        $this->msg_array['author'] = 'warfehr test author in events';
+
+        $response = $this->post('/oled-msg', $this->msg_array);
 
         Event::assertDispatched('WarfehrMsg');
-        Event::assertDispatched('WarfehrImg');
-        Event::assertDispatched('WarfehrSocial');
     }
 
-    public function testDatabase()
+    public function testQueued()
     {
-        $this->before();
+        $this->msg_array['author'] = 'warfehr test author in queue';
+
+        $response = $this->post('/oled-msg', $this->msg_array);
+
+        Queue::assertPushed(ProcessImg::class, function ($job) {
+            return $job->msg->author === $this->msg_array['author'];
+        });
+        Queue::assertPushed(ProcessSocial::class, function ($job) {
+            return $job->msg->author === $this->msg_array['author'];
+        });
+
+        Queue::assertPushedOn('processing_img', ProcessImg::class);
+        Queue::assertPushedOn('processing_social', ProcessSocial::class);
+    }
+
+    public function testDatabaseSaved()
+    {
+        $this->msg_array['author'] = 'warfehr test author in database';
+
+        $response = $this->post('/oled-msg', $this->msg_array);
+        $this->assertDatabaseHas('oled_msg', ['author' => $this->msg_array['author']]);
+    }
+
+    /**
+     * Image is required to tweet, so run both image and social jobs
+     */
+    public function testCreatedAt()
+    {
+        $this->msg_array['content'] = implode('', $this->msg_array['block']);
+        unset($this->msg_array['block']);
+
+        $msg_model = new MsgModel(
+            array_merge(
+                ['author' => 'warfehr test created at'],
+                $this->msg_array
+            )
+        );
+        $msg_model->save();
+
+        (new ProcessImg($msg_model))->handle();
+        (new ProcessSocial($msg_model))->handle();
         
-        $response = $this->post('/oled-msg', [
-            'author' => 'warfehr test author in database',
-            'block' => array_fill(0, $this->total, 1)
-        ]);
-        $this->assertDatabaseHas('oled_msg', ['author' => 'warfehr test author in database']);
+        $updated_msg = MsgModel::find($msg_model->id);
+        $this->assertNotNull($updated_msg->img_created_at, "Failed to assert image created at");
+        $this->assertNotNull($updated_msg->tweet_created_at, "Failed to assert tweet created at");
+
+        // remove the tweet created
+        $twitter = Twitter::getUserTimeline(['screen_name' => config('config.twitter-handle'), 'count' => 1]);
+        Twitter::destroyTweet($twitter[0]->id);
+
+        // remove the image created
+        unlink($msg_model->img_path);
+
     }
 }

@@ -13,6 +13,7 @@ class MsgHandler
    * 
    * @param Request $request
    * @throws Exception from validation errors
+   * @return MsgModel $message
    */
   public function handle(Request $request)
   {
@@ -33,7 +34,7 @@ class MsgHandler
         throw new MsgException($message->errors());
       }
 
-      return $message_array;
+      return $message;
   }
 
   /**

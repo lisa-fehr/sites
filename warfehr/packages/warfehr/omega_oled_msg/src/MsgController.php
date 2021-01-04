@@ -3,9 +3,12 @@
 namespace Warfehr\OmegaOledMsg;
 
 use Event;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Warfehr\OmegaOledMsg\Exceptions\MsgException;
+use Warfehr\OmegaOledMsg\Jobs\ProcessImg;
+use Warfehr\OmegaOledMsg\Jobs\ProcessSocial;
 
 class MsgController extends Controller
 {
@@ -32,7 +35,7 @@ class MsgController extends Controller
   {
     try {
 
-      $data = Event::fire('WarfehrMsg', [$request]);
+      $msg_array = Event::fire('WarfehrMsg', [$request]);
     }
     catch (MsgException $e) {
 
@@ -43,9 +46,18 @@ class MsgController extends Controller
           )
           ->withInput();
     }
+    $msg_model = array_first($msg_array);
+
+    if(! $msg_model) {
+      return redirect()
+        ->back()
+        ->with('warfehr_status', 'Error: Message was not queued.')
+      ;
+    }
     
-    $social_data = Event::fire('WarfehrImg', $data);
-    Event::fire('WarfehrSocial', $social_data);
+    // processing_img should have a higher priority than processing_social
+    dispatch((new ProcessImg($msg_model))->onQueue('processing_img'));
+    dispatch((new ProcessSocial($msg_model))->onQueue('processing_social'));
 
     return redirect()
       ->back()
