@@ -15,7 +15,7 @@ h1 {
   font-size: 150%;
   padding-bottom: 5px;
   margin-bottom: 5px;
-  color: #fff;
+  color: #ccc;
 }
 h2 {
   font-size: 110%;
@@ -24,7 +24,7 @@ h2 {
 
 p {
   margin: 13px 0;
-  line-height: 20px;
+  line-height: 140%;
 }
 
 a {
@@ -152,7 +152,7 @@ section {
   margin: 0 3% 2% 0;
   position: relative;
 }
-.profile {
+.profile, .tech {
   border: 1px solid #000;
   background: #2b2c2c;
   padding: 6%;
@@ -166,6 +166,13 @@ section {
 }
 .intro li {
   margin: 2% 0 3% 4%;
+}
+#technologies {
+  margin-top: 6%;
+}
+.title {
+  font-weight: bold;
+  color: #b0977f;
 }
 
 
@@ -323,6 +330,13 @@ ul#bottom-nav a {
 
 .fa {
   color: #508e9a;
-  font-size: 25px !important;
+  font-size: 180% !important;
   margin-right: 10px;
+}
+#network .fa {
+  font-size: 320% !important;
+}
+
+#technologies.fa {
+  font-size: 220% !important;
 }

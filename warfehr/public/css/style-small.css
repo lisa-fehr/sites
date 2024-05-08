@@ -1,3 +1,9 @@
+body {
+  font-size: 180%;
+}
+#tagline {
+  display: none;
+}
 .box, .intro {
   width: 96%;
 }

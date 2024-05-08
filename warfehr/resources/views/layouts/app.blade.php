@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/gif" href="/images/favicon.gif" />
     <link rel="apple-touch-icon" href="/images/iPhone-icon.png" />
     <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
