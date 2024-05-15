@@ -8,10 +8,10 @@
     <p><a href="mailto:lisa@warfehr.com" class="email"><i class="fa fa-envelope-o"></i>lisa@warfehr.com</a></p>
 
     <p class="adr"><span class="locality">Waterloo</span>, <span class="region">ON</span></p>
-    <br />
+    <br>
     <h2>Education:</h2>
     <p class="note">Bachelor of Science in Computer Science</p>
-    <br />
+    <br>
     <h2>Network:</h2>
     <p id="network">
       <a href="https://twitter.com/lisa_warfehr" class="url"><i class="fa fa-twitter"></i></a>
@@ -19,7 +19,7 @@
       <a href="https://www.linkedin.com/in/lisafehr" class="url"><i class="fa fa-linkedin-square"></i></a>
     </p>
   </div>
-  <br />
+  <br>
   <div class="tech">
     <h2>Tech:</h2>
     <div id="technologies" class="fa">
@@ -49,5 +49,5 @@
     <li>Remote work experience, as well as in office</li>
   </ul>
 </div>
-<br class="clear" />
+<br class="clear">
 @endsection

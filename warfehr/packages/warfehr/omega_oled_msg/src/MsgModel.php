@@ -28,7 +28,8 @@ class MsgModel extends Model
     protected $fillable = [
       'author',
       'content',
-      'columns'
+      'columns',
+      'image'
     ];
 
     /**

@@ -5,4 +5,5 @@ return [
   'columns' => 32,
   'rows' => 7,
   'twitter-handle' => 'warfehr',
+  'image-path' => public_path('images')
 ];

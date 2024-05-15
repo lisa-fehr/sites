@@ -33,7 +33,7 @@ class MsgHandler
         throw new MsgException($message->errors());
       }
 
-      return $message_array;
+      return $message;
   }
 
   /**

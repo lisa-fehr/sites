@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <title>@yield('title')</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
-    <link rel='stylesheet' media='only screen and (max-width: 775px)' href='/css/style-small.css' />
-    <link rel="shortcut icon" type="image/gif" href="/images/favicon.gif" />
-    <link rel="apple-touch-icon" href="/images/iPhone-icon.png" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen">
+    <link rel='stylesheet' media='only screen and (max-width: 775px)' href='/css/style-small.css'>
+    <link rel="shortcut icon" type="image/gif" href="/images/favicon.gif">
+    <link rel="apple-touch-icon" href="/images/iPhone-icon.png">
     <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -40,7 +40,7 @@
     <div id="blur">
       <div id="container">
         <header></header>
-        <a href="{{route('home')}}"><img src="/images/lisafehr-logo.png" width="239" height="95" alt="Lisa Fehr" id="logo" /></a>
+        <a href="{{route('home')}}"><img src="/images/lisafehr-logo.png" width="239" height="95" alt="Lisa Fehr" id="logo"></a>
         <div id="tagline" class="button">Web Developer</div>
         <section>
           @if (View::hasSection('header'))

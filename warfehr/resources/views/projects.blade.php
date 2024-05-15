@@ -2,6 +2,10 @@
 @section('title', 'Warfehr - Projects')
 @section('header', 'Projects')
 @section('content')
+
+<p>
+  <i class="fa fa-exclamation-triangle"></i>Twitter/X removed free api access. <a href="{{route('msg')}}">Go here to see current images</a
+</p>
 <p>
   <a href="https://twitter.com/warfehr/status/886775729052160000">Video demo</a> - created picture shows up on oled screen
 </p>

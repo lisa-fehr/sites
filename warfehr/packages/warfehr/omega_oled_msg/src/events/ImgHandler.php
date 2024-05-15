@@ -2,7 +2,9 @@
 
 namespace Warfehr\OmegaOledMsg\Events;
 
-class ImgHandler 
+use Warfehr\OmegaOledMsg\MsgModel;
+
+class ImgHandler
 {
   /**
    * x starting axis
@@ -31,7 +33,7 @@ class ImgHandler
    * 
    * @param array $data
    */
-  public function handle(array $data)
+  public function handle(MsgModel $data)
   {
 
     $width = config('config.columns');
@@ -41,7 +43,7 @@ class ImgHandler
     imagecolorallocate($image, 0, 0, 0);
     $this->color = imagecolorallocate($image, 233, 14, 91);
     
-    $text = collect(str_split($data['content']))
+    $text = collect(str_split($data->content))
       ->each(function($digit) use ($image, $width) {
       
       // add a pixel for each 1 in the array
@@ -62,15 +64,21 @@ class ImgHandler
     imagecopyresampled($dst, $image, 0, 0, 0, 0, $width * 100, $height * 100, $width, $height);
 
 
+    $this->picture_path = date('YmdHis') . 'msg.png';
+
     imagepng(
       $dst,
-      $this->picture_path = 'images/' . date('YmdHis') . 'msg.png'
+      config('config.image-path') . '/' . date('YmdHis') . 'msg.png'
     );
     imagedestroy($image);
+
+    if ($data->id) {
+        MsgModel::where(['id' => $data->id])->update(['image' => $this->picture_path]);
+    }
   
     return [
       'picture_path' => $this->picture_path,
-      'author' => $data['author']
+      'author' => $data->author
     ];
   }
 }

@@ -14,16 +14,16 @@
         {!! Form::label('checkbox' . $i, ' ') !!}
     </div>
     @if(($i + 1) % $columns == 0)
-        <br class="clearleft" />
+        <br class="clearleft">
     @endif
 
 @endfor
 
-<br class="clear" />
+<br class="clear">
 {!! Form::submit('Send Picture', ['class' => 'alignright']) !!}
 
 <div class="aligneft">
     {!! Form::text('author', '', ['placeholder' => 'Name', 'required']) !!}
 </div>
 {!! Form::close() !!}
-<br class="clear" />
+<br class="clear">

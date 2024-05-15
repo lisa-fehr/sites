@@ -14,7 +14,7 @@ class SocialHandler
    */
   public function handle(array $data)
   {
-    $uploaded_media = Twitter::uploadMedia(['media' => File::get(public_path($data['picture_path']))]);
-    Twitter::postTweet(['status' => 'Credit: ' . $data['author'], 'media_ids' => $uploaded_media->media_id_string]);
+    //$uploaded_media = Twitter::uploadMedia(['media' => File::get(public_path($data['picture_path']))]);
+    //Twitter::postTweet(['status' => 'Credit: ' . $data['author'], 'media_ids' => $uploaded_media->media_id_string]);
   }
 }
